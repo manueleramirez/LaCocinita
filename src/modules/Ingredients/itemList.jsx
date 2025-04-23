@@ -9,7 +9,7 @@ const IngredientItemList = ({handleSelect,data,units}) =>{
     },[data,units])
 
     return(
-      <button onClick={() => handleSelect(data)} className=" flex bg-white rounded shadow-md text-slate-500 shadow-slate-200 p-4">
+      <button onClick={() => handleSelect(data)} className="flex justify-center items-center bg-white rounded shadow-md text-slate-500 shadow-slate-200 p-4 h-auto w-full">
           <div className="w-1/5 flex justify-center items-center">
              <IoPricetagOutline className="text-6xl"/>
           </div>

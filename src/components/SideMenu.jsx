@@ -76,7 +76,7 @@ export default function SideMenu() {
                       onClick={()=>setIsSideNavOpen(false)}
                       className=" ml-4 flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-purple-50 hover:text-primary focus:bg-purple-50 aria-[current=page]:bg-purple-50 aria-[current=page]:text-primary"
                     >
-                      <div className="flex items-center self-center text-2xl">
+                      <div className="flex items-center self-center text-2xl text-primary">
                         {route.icon}
                       </div>
                       <span className="text-base font-medium">

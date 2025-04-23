@@ -1,62 +1,45 @@
 import { supabase } from "../supabaseClient";
 
-export class CustomerRepository {
-    async GetCustomer(userId) {
+export class ConfigRepository {
+    async GetConfig(userId) {
         const { data, error } = await supabase
-        .from('customers')
+        .from('config')
         .select('*')
         .eq('user_id', userId)
       
           if (error) {
-            console.error('Error signing in user:', error);
             return {isSuccess: false, data:error};
           }
       
           return {isSuccess:true,data:data}; 
     }
 
-    async CreateCustomer(userId, data) {
+    async CreateConfig(userId, data) {
         const { data:response, error } = await supabase
-        .from('customers')
+        .from('config')
         .insert([
             { user_id: userId, ...data }
         ])
 
           if (error) {
-            console.error('Error signing in user:', error);
             return {isSuccess: false, data:error};
           }
 
           return {isSuccess:true,data:response};
     }
 
-    async UpdateCustomer(userId, data) {
+    async UpdateConfig(userId, data) {
         let { data:response, error } = await supabase
-        .from('customers')
+        .from('config')
         .update({ ...data })
         .eq('user_id', userId)
 
           if (error) {
-            console.error('Error signing in user:', error);
             return {isSuccess: false, data:error};
           }
 
           return {isSuccess:true,data:response};
     }
 
-    async DeleteCustomer(id) {
-        let { data:response, error } = await supabase
-        .from('customers')
-        .delete()
-        .eq('id',id)
-
-
-        if (error) {
-            console.error('Error signing in user:', error);
-            return {isSuccess: false, data:error};
-          }
-        return {isSuccess:true,data:response};
-
-    }
 
 }

@@ -1,14 +1,13 @@
 
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useState } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { UserRepository } from "../../infrastructure/repository/User.Repository";
-import { userAdapter } from "../../adapters/user.adapter";
 import { useDispatch } from "react-redux";
-import { login } from "./slice";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
+import { userAdapter } from "../../adapters/user.adapter";
 import Logo from "../../components/Logo";
-import { IoHandLeft } from "react-icons/io5";
+import { UserRepository } from "../../infrastructure/repository/User.Repository";
+import { login } from "./slice";
 
 const SignIn = () => {
   const [errorMessage, setErrorMessage] = useState("");

@@ -5,13 +5,13 @@ import { createSlice } from '@reduxjs/toolkit';
 const configureSlice = createSlice({
   name: 'config',
   initialState: {
-    WorkHourlyRate: 230,
-    profitMargin: 0.7,
-    spendMargin: 0.15
+    WorkHourlyRate: 150,
+    profitMargin: 0.4,
+    spendMargin: 0.2
   },
   reducers: {
-    setSuppliers: (state, {payload}) => {
-      state.suppliers = payload;
+    setConfig: (state, {payload}) => {
+      return payload;
     },
     selectSupplier: (state, {payload}) => {
       if(payload){

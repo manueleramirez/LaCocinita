@@ -2,7 +2,7 @@ import { IoCartOutline } from "react-icons/io5"
 
 const SupplierItemList = ({handleSelect,data}) =>{
     return(
-      <div onClick={() => handleSelect(data)} className=" flex bg-white rounded shadow-md text-slate-500 shadow-slate-200 p-4">
+      <button onClick={() => handleSelect(data)} className="flex justify-center items-center bg-white rounded shadow-md text-slate-500 shadow-slate-200 p-4 h-auto w-full">
           <div className="w-1/5 flex justify-center items-center">
              <IoCartOutline className="text-6xl"/>
           </div>
@@ -20,7 +20,7 @@ const SupplierItemList = ({handleSelect,data}) =>{
               <span className="font-bold">Teléfono:</span> {data.phone}
             </div>
           </div>
-        </div>
+        </button>
     )
   }
 

@@ -1,6 +1,6 @@
 import { IoList } from "react-icons/io5";
 import ListContainer from "../../components/ListContainer";
-import SupplierItemList from "./itemList";
+import SupplierItemList from "./ItemList";
 
 
 export default function SupplierList({ showForm, handleSelect,suppliers }) {

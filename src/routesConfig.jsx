@@ -3,6 +3,7 @@ import Supplier from "./modules/Supplier/Supplier";
 import Ingredient from "./modules/Ingredients/Ingredient";
 import Recipe from "./modules/Recipe/Recipe";
 import SignIn from "./modules/Security/Login";
+import Config from "./modules/Configurations";
 
 const routesConfig = [
     {
@@ -40,7 +41,7 @@ const routesConfig = [
     {
       path: "/config",
       label: "Configuraciones",
-      element: <Ingredient/>,
+      element: <Config/>,
       showInMenu: true,
       isProtected: true,
       icon: <IoCog/>

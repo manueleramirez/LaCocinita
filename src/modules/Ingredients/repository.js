@@ -1,58 +1,60 @@
-import { supabase } from "../supabaseClient";
+import { supabase } from "../../infrastructure/supabaseClient";
 
-export class CustomerRepository {
-    async GetCustomer(userId) {
+export class IngredientRepository {
+    async GetIngredients(userId) {
         const { data, error } = await supabase
-        .from('customers')
+        .from('ingredients')
         .select('*')
-        .eq('user_id', userId)
+        .eq('userId', userId)
       
           if (error) {
-            console.error('Error signing in user:', error);
+            console.error('Error signing in ingredient:', error);
             return {isSuccess: false, data:error};
           }
       
           return {isSuccess:true,data:data}; 
     }
 
-    async CreateCustomer(userId, data) {
+    async CreateIngredient(userId, data) {
         const { data:response, error } = await supabase
-        .from('customers')
+        .from('ingredients')
         .insert([
-            { user_id: userId, ...data }
+            { userId: userId, ...data }
         ])
 
           if (error) {
-            console.error('Error signing in user:', error);
+            console.error('Error signing in ingredient:', error);
             return {isSuccess: false, data:error};
           }
 
           return {isSuccess:true,data:response};
     }
 
-    async UpdateCustomer(userId, data) {
+    async UpdateIngredient(userId, data) {
+      console.log(data)
         let { data:response, error } = await supabase
-        .from('customers')
+        .from('ingredients')
         .update({ ...data })
-        .eq('user_id', userId)
+        .eq('userId', userId)
+        .eq('id', data.id) 
 
           if (error) {
-            console.error('Error signing in user:', error);
+            console.error('Error signing in ingredient:', error);
             return {isSuccess: false, data:error};
           }
 
           return {isSuccess:true,data:response};
     }
 
-    async DeleteCustomer(id) {
+    async DeleteIngredient(id) {
         let { data:response, error } = await supabase
-        .from('customers')
+        .from('ingredients')
         .delete()
         .eq('id',id)
 
 
         if (error) {
-            console.error('Error signing in user:', error);
+            console.error('Error signing in ingredient:', error);
             return {isSuccess: false, data:error};
           }
         return {isSuccess:true,data:response};

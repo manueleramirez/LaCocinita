@@ -1,17 +1,31 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setSuppliers } from '../modules/Supplier/slice';
-import { SupplierRepository } from '../modules/Supplier/repository';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { supplierAdapter } from '../adapters/supplier.adapter';
+import { SupplierRepository } from '../modules/Supplier/repository';
+import { setSuppliers } from '../modules/Supplier/slice';
+import { RecipeRepository } from '../modules/Recipe/repository';
+import { recipeListAdapter } from '../adapters/recipe.adapter';
+import { setRecipes } from '../modules/Recipe/slice';
+import { getIngredient } from '../modules/Ingredients/slice';
+import { IngredientRepository } from '../modules/Ingredients/repository';
 
 export default function useInit() {
     const user = useSelector((state) => state.user.user);
-    const repository = new SupplierRepository()
+    const supplierRepository = new SupplierRepository()
+    const recipeRepository = new RecipeRepository()
+    const ingredientRepository = new IngredientRepository()
     const dispatcher = useDispatch();
 
     const initData = async() =>{
+        ingredientRepository.GetIngredients(user.id).then( ({data}) => dispatcher(getIngredient(data)))
 
-        repository.GetSupplier(user.id).then(({data}) =>{
+        recipeRepository.GetRecipes(user.id).then(({data})=>{
+            const recipeAdapted = data.map(recipe => recipeListAdapter(recipe));
+            dispatcher(setRecipes(recipeAdapted))
+        })
+
+        supplierRepository.GetSupplier(user.id).then(({data}) =>{
             const supplierAdapted = data.map(supplier => supplierAdapter(supplier))
             dispatcher(setSuppliers(supplierAdapted))
           })
@@ -20,6 +34,6 @@ export default function useInit() {
 
     useEffect(()=>{
         initData()
-    })
+    },[])
   
 }

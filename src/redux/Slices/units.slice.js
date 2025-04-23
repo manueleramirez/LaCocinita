@@ -61,14 +61,8 @@ const measurementUnits = {
     },
     {
       code: "gal", // abreviatura de "gallon"
-      singularName: "galon",
+      singularName: "galón",
       pluralName: "galones",
-      conversions: [],
-    },
-    {
-      code: "pt", // abreviatura de "pint"
-      singularName: "pinta",
-      pluralName: "pintas",
       conversions: [],
     },
     {
@@ -120,7 +114,6 @@ measurementUnits.units[6].conversions = [
   { code: "ml", factor: 1000 }, // liters to milliliters
   { code: "m3", factor: 0.001 }, // liters to cubic meters
   { code: "gal", factor: 0.264172 }, // liters to gallons
-  { code: "pt", factor: 2.11338 }, // liters to pints
   { code: "cup", factor: 4.22675 }, // liters to cups
 ];
 measurementUnits.units[7].conversions = [

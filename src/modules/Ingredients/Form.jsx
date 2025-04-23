@@ -12,7 +12,6 @@ const IngredientForm = ({ add, edit, remove }) => {
 
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values)
     if (isEditing) {
       edit(values);
     } else {
@@ -32,7 +31,7 @@ const IngredientForm = ({ add, edit, remove }) => {
           unitId: "",
           price: "",
           distributorId: "",
-          Brand: "",
+          brand: "",
         }}
         enableReinitialize={true}
         validationSchema={IngredientSchema}
@@ -130,15 +129,15 @@ const IngredientForm = ({ add, edit, remove }) => {
             </div>
 
             <div>
-              <label htmlFor="Brand" className="block font-medium">Marca (Opcional)</label>
+              <label htmlFor="brandId" className="block font-medium">Marca (Opcional)</label>
               <Field
                 type="text"
-                id="Brand"
-                name="Brand"
+                id="brand"
+                name="brand"
                 className="w-full px-4 py-2 border rounded-md"
               />
               <ErrorMessage
-                name="Brand"
+                name="brand"
                 component="div"
                 className="text-red-500 text-sm"
               />
@@ -157,7 +156,7 @@ const IngredientForm = ({ add, edit, remove }) => {
                   onClick={()=> remove(selected?.id)}
                   className="w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
                 >
-                  Delete Supplier
+                  Eliminar
                 </button>
               </>
             ) : (

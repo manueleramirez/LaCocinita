@@ -12,7 +12,7 @@ export default function RecipeList({ showForm, handleSelect }) {
         handleAdd={showForm}
         addLabel={"Agregar"}
       >
-        {recipes.length > 0 ? (
+        {recipes?.length > 0 ? (
           recipes.map((recipe) => (
             <RecipeItemList
               handleSelect={handleSelect}

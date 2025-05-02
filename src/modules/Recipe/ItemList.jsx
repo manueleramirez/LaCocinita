@@ -12,7 +12,7 @@ const RecipeItemList = ({handleSelect,data}) =>{
               <span className="font-bold text-primary text-2xl">{data.name}</span> 
             </div>
             <div>
-              <span className=" font-semibold text-primary">{data.description}</span> 
+              <span className=" font-semibold text-primary text-ellipsis ">{data.description}</span> 
             </div>
             <div>
               <span className="font-bold">Precio recomendado: </span> 

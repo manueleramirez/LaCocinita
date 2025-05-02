@@ -4,7 +4,7 @@ export class RecipeRepository {
   async GetRecipes(userId) {
     const { data, error } = await supabase
       .from("recipes")
-      .select("*,recipes_ingredients(*)")
+      .select("*,recipes_ingredients(*,ingredients(name))")
       .eq("userId", userId);
     if (error) {
       console.error("Error signing in ingredient:", error);

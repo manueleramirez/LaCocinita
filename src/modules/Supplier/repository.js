@@ -36,7 +36,6 @@ export class SupplierRepository {
         .eq('id', data.id)
 
           if (error) {
-            console.log('🤖🤖🤖 ~ Document:repository.js LN:39', JSON.stringify(error,null,'\t'))
             console.error('Error signing in user:', error);
             return {isSuccess: false, data:error};
           }

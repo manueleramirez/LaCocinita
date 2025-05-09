@@ -16,17 +16,27 @@ export default function Recipe() {
   const handleAdd = async (values) => {
     await repository.CreateRecipe(values)
     hideModal();
+    window.location.reload();
   };
 
   const handleEdit = (values) => {
-    console.log("Editing recipe:", values);
-    hideModal();
-    setIsEditing(false);
+    repository.UpdateRecipe(values).then(()=>{
+      hideModal();
+      setIsEditing(false);
+      window.location.reload();
+    }).catch(e =>{
+      console.log(e)
+    });
   };
 
-  const handleDelete = (id) => {
-    console.log("Deleting recipe:", id);
-    hideModal();
+  const handleDelete =  (id) => {
+    console.log(id)
+    repository.DeleteRecipe(id).then(()=>{
+      hideModal();
+      window.location.reload();
+    }).catch(e =>{
+      console.log(e)
+    });
   };
 
   const handleSelect = (recipe) => {

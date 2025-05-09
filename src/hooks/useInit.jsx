@@ -19,21 +19,22 @@ export default function useInit() {
 
     const initData = async() =>{
         ingredientRepository.GetIngredients(user.id).then( ({data}) => dispatcher(getIngredient(data)))
+        supplierRepository.GetSupplier(user.id).then(({data}) =>{
+            const supplierAdapted = data.map(supplier => supplierAdapter(supplier))
+            dispatcher(setSuppliers(supplierAdapted))
+          })
 
         recipeRepository.GetRecipes(user.id).then(({data})=>{
             const recipeAdapted = data.map(recipe => recipeListAdapter(recipe));
             dispatcher(setRecipes(recipeAdapted))
         })
 
-        supplierRepository.GetSupplier(user.id).then(({data}) =>{
-            const supplierAdapted = data.map(supplier => supplierAdapter(supplier))
-            dispatcher(setSuppliers(supplierAdapted))
-          })
 
     }
 
     useEffect(()=>{
         initData()
     },[])
+
   
 }

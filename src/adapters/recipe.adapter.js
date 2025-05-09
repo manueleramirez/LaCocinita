@@ -1,6 +1,4 @@
 export const recipeListAdapter = (data) =>{
-    console.log(data)
-
     return {
         id: data.id,
         name: data.name,

@@ -31,7 +31,6 @@ export class IngredientRepository {
     }
 
     async UpdateIngredient(userId, data) {
-      console.log(data)
         let { data:response, error } = await supabase
         .from('ingredients')
         .update({ ...data })

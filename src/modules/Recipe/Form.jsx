@@ -1,5 +1,3 @@
-//TODO: Clean Module and connect with the supabase repository, remember do the method to save recipe and recipies_ingredients
-
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { IoList } from "react-icons/io5";
 import { useSelector } from "react-redux";
@@ -24,6 +22,7 @@ const RecipeForm = ({add,edit, remove,recipes }) => {
     const newList = ingredients.filter((i) => i.id != id);
     setFieldValue("ingredients", newList);
   };
+  console.log(selected)
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">

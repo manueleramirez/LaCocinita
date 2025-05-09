@@ -44,4 +44,46 @@ export class RecipeRepository {
     }
 
   }
+
+  async UpdateRecipe(recipe) {
+    const ingredients  = recipe.ingredients;
+    delete recipe.ingredients
+    const { __, error } = await supabase
+      .from("recipes")
+      .update(recipe)
+      .eq("id", recipe.id);
+    if (error) {
+      console.error("Error updating recipe:", error);
+      return { isSuccess: false, data: error };
+    }
+  
+    const newIngredientObj = ingredients.map( i => {i.recipeId = recipe.id; delete i.name; delete i.unit; return i })
+
+    const {_ , err} =  await supabase
+    .from('recipes_ingredients')
+    .upsert(newIngredientObj, {conflict: 'id'})
+    
+    if (err) { 
+      return new Error(err.message)
+    }
+
+    return { isSuccess: true };
+  }
+
+  async DeleteRecipe(recipeId) {
+    const {error2} = await supabase
+    .from('recipes_ingredients')
+    .delete()
+    .eq('recipeId', recipeId)
+
+    const { error } = await supabase
+      .from("recipes")
+      .delete()
+      .eq("id", recipeId);
+    if (error || error2) {
+      console.error("Error deleting recipe:", error || error2);
+      return { isSuccess: false, data: error || error2 };
+    }
+    return { isSuccess: true, data: null };
+  }
 }

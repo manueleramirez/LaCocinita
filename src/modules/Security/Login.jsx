@@ -1,6 +1,6 @@
 
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -41,6 +41,18 @@ const SignIn = () => {
         }
     
   };
+
+  //verificar si el usuario ya está autenticado
+useEffect(() => {
+  const validateSession = async () => {
+    const {isSuccess,data} = await Service.validateSession();
+    if (isSuccess) {
+      dispatcher(login(userAdapter(data)));
+      navigate('/recipes')
+    }
+  };
+  validateSession();
+},[])
 
 
   return (

@@ -5,14 +5,18 @@ import Logo from "./Logo";
 import { IoExit } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { logout } from "../modules/Security/slice";
+import { UserRepository } from "../infrastructure/repository/User.Repository";
 
 export default function SideMenu() {
   const dispatcher = useDispatch();
+  const userService = new UserRepository()
   const navigate = useNavigate()
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
   const handleSignOut = () =>{
-    dispatcher(logout())
-    navigate('/')
+    userService.signOut().then(()=>{    
+      dispatcher(logout())
+      navigate('/')
+    })
   }
   return (
     <>

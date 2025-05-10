@@ -42,7 +42,7 @@ const routesConfig = [
       path: "/config",
       label: "Configuraciones",
       element: <Config/>,
-      showInMenu: true,
+      showInMenu: false,
       isProtected: true,
       icon: <IoCog/>
     },

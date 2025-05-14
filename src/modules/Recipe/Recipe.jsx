@@ -106,7 +106,7 @@ const RecipeDetail = ({ recipe, onEdit, onClose }) => {
         </article>
         <div>
           <strong className="text-primary">Tiempo de preparación:</strong>
-          <p>{recipe.preparationTime} minutos</p>
+          <p>{recipe.preparationTime} horas o {recipe.preparationTime * 60} minutos</p>
         </div>
         <div>
           <strong className="text-primary">Pociones por Receta:</strong>

@@ -1,49 +1,52 @@
-import { IoReceiptOutline } from "react-icons/io5"
+import { IoReceiptOutline, IoArrowForward } from "react-icons/io5"
 
 const RecipeItemList = ({handleSelect,data}) =>{
     return(
       <button 
         onClick={() => handleSelect(data)} 
-        className="flex flex-col sm:flex-row items-start sm:items-center bg-white rounded-lg shadow-md text-slate-500 shadow-slate-200 p-4 h-auto w-full hover:shadow-lg transition-shadow duration-200"
+        className="group relative flex items-center bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 p-3 w-full active:scale-[0.98]"
       >
-        {/* Icono */}
-        <div className="w-full sm:w-1/5 flex justify-center items-center mb-3 sm:mb-0">
-           <IoReceiptOutline className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-primary"/>
+        {/* Icono compacto para mobile */}
+        <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-3 group-hover:bg-primary/20 transition-colors duration-200">
+          <IoReceiptOutline className="text-xl text-primary"/>
         </div>
         
-        {/* Contenido */}
-        <div className="flex flex-col flex-1 gap-2 text-sm sm:text-base">
+        {/* Contenido principal */}
+        <div className="flex-1 min-w-0">
           {/* Nombre */}
-          <div className="text-center sm:text-left">
-            <span className="font-bold text-primary text-lg sm:text-xl lg:text-2xl break-words">
+          <div className="flex items-start justify-between mb-1">
+            <h3 className="font-semibold text-slate-800 text-base truncate pr-2 group-hover:text-primary transition-colors duration-200">
               {data.name}
-            </span> 
+            </h3>
+            <div className="flex-shrink-0 w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary transition-colors duration-200">
+              <IoArrowForward className="text-primary text-xs group-hover:text-white transition-colors duration-200" />
+            </div>
           </div>
           
           {/* Descripción */}
-          <div className="text-center sm:text-left">
-            <span className="font-semibold text-slate-600 text-ellipsis line-clamp-2">
-              {data.description}
-            </span> 
-          </div>
+          <p className="text-slate-600 text-sm leading-relaxed line-clamp-1 mb-2">
+            {data.description}
+          </p>
           
-          {/* Información de precios */}
-          <div className="space-y-1 text-center sm:text-left">
-            <div>
-              <span className="font-bold text-slate-700">Precio recomendado: </span> 
+          {/* Información de precios compacta */}
+          <div className="flex flex-wrap gap-2 text-xs">
+            <div className="flex items-center bg-slate-50 rounded px-2 py-1 group-hover:bg-primary/5 transition-colors duration-200">
+              <span className="text-slate-500 mr-1">Total:</span>
               <span className="font-semibold text-primary">
-                {data.recommendedSalesPrice.toLocaleString('es-DO', { style: 'currency', currency: 'DOP', minimumFractionDigits: 2 })}
-              </span> 
+                {data.recommendedSalesPrice.toLocaleString('es-DO', { style: 'currency', currency: 'DOP', minimumFractionDigits: 0 })}
+              </span>
             </div>
-            <div>
-              <span className="font-bold text-slate-700">Precio por porción: </span> 
+            
+            <div className="flex items-center bg-slate-50 rounded px-2 py-1 group-hover:bg-primary/5 transition-colors duration-200">
+              <span className="text-slate-500 mr-1">Porción:</span>
               <span className="font-semibold text-primary">
-                {data.recommendedSalesPricePerPortion.toLocaleString('es-DO', { style: 'currency', currency: 'DOP', minimumFractionDigits: 2 })}
-              </span> 
+                {data.recommendedSalesPricePerPortion.toLocaleString('es-DO', { style: 'currency', currency: 'DOP', minimumFractionDigits: 0 })}
+              </span>
             </div>
-            <div>
-              <span className="font-bold text-slate-700">Porciones: </span> 
-              <span className="font-semibold text-primary">{data.portionPerRecipe}</span> 
+            
+            <div className="flex items-center bg-slate-50 rounded px-2 py-1 group-hover:bg-primary/5 transition-colors duration-200">
+              <span className="text-slate-500 mr-1">Cant:</span>
+              <span className="font-semibold text-primary">{data.portionPerRecipe}</span>
             </div>
           </div>
         </div>

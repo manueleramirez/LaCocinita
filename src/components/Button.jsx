@@ -20,7 +20,7 @@ export default function Button({ label, icon, onClick, variant = "primary", size
       className={`${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]}`}
     >
       {icon && <span className="flex-shrink-0">{icon}</span>}
-      <span className="hidden sm:inline">{label}</span>
+      <span className="inline">{label}</span>
     </button>
-  );
+  );  
 }

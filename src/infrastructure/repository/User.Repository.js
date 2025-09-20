@@ -33,4 +33,29 @@ export class UserRepository {
         return {isSuccess:true,data:null};
     }
 
+    async resetPassword(email) {
+        const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: `${window.location.origin}/reset-password`,
+        });
+        
+        if (error) {
+            console.error('Error resetting password:', error);
+            return {isSuccess: false, data: error};
+        }
+        
+        return {isSuccess: true, data: data};
+    }
+
+    async updatePassword(newPassword) {
+        const { data, error } = await supabase.auth.updateUser({
+            password: newPassword
+        });
+        
+        if (error) {
+            console.error('Error updating password:', error);
+            return {isSuccess: false, data: error};
+        }
+        
+        return {isSuccess: true, data: data};
+    }
 }

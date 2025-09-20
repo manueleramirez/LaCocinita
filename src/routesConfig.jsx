@@ -3,6 +3,8 @@ import Supplier from "./modules/Supplier/Supplier";
 import Ingredient from "./modules/Ingredients/Ingredient";
 import Recipe from "./modules/Recipe/Recipe";
 import SignIn from "./modules/Security/Login";
+import ForgotPassword from "./modules/Security/ForgotPassword";
+import ResetPassword from "./modules/Security/ResetPassword";
 import Config from "./modules/Configurations";
 
 const routesConfig = [
@@ -13,6 +15,20 @@ const routesConfig = [
       showInMenu: false,
       isProtected: false,
       
+    },
+    {
+      path: "/forgot-password",
+      label: "",
+      element: <ForgotPassword/>,
+      showInMenu: false,
+      isProtected: false,
+    },
+    {
+      path: "/reset-password",
+      label: "",
+      element: <ResetPassword/>,
+      showInMenu: false,
+      isProtected: false,
     },
     {
       path: "/recipes",

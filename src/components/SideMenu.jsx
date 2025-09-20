@@ -12,18 +12,21 @@ export default function SideMenu() {
   const userService = new UserRepository()
   const navigate = useNavigate()
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
+  
   const handleSignOut = () =>{
     userService.signOut().then(()=>{    
       dispatcher(logout())
       navigate('/')
     })
   }
+  
   return (
     <>
+      {/* Botón hamburguesa móvil */}
       <button
         title="Side navigation"
         type="button"
-        className={`visible fixed left-6 top-6 z-40 order-10 block h-10 w-10 self-center rounded bg-white opacity-100 lg:hidden ${
+        className={`fixed left-4 top-4 z-40 block h-10 w-10 self-center rounded bg-white shadow-md opacity-100 lg:hidden ${
           isSideNavOpen
             ? "visible opacity-100 [&_span:nth-child(1)]:w-6 [&_span:nth-child(1)]:translate-y-0 [&_span:nth-child(1)]:rotate-45 [&_span:nth-child(3)]:w-0 [&_span:nth-child(2)]:-rotate-45 "
             : ""
@@ -50,7 +53,7 @@ export default function SideMenu() {
         </div>
       </button>
 
-      {/*  <!-- Side Navigation --> */}
+      {/* Sidebar */}
       <aside
         id="nav-menu-1"
         aria-label="Side navigation"
@@ -58,14 +61,17 @@ export default function SideMenu() {
           isSideNavOpen ? "translate-x-0" : " -translate-x-full"
         }`}
       >
+        {/* Logo en sidebar */}
         <Link
-          aria-label="WindUI logo"
-          className="flex items-center gap-2 whitespace-nowrap p-6 text-xl font-medium focus:outline-none"
+          aria-label="LaCocinita logo"
+          className="flex items-center gap-2 whitespace-nowrap p-6 text-xl font-medium focus:outline-none border-b border-slate-200"
           href="#"
         >
           <Logo/>
           <p className="text-primary font-bold text-2xl italic">LaCocinita</p>
         </Link>
+        
+        {/* Navegación */}
         <nav
           aria-label="side navigation"
           className="flex-1 divide-y divide-slate-100 overflow-auto"
@@ -78,7 +84,7 @@ export default function SideMenu() {
                     <Link
                       to={route.path}
                       onClick={()=>setIsSideNavOpen(false)}
-                      className=" ml-4 flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-purple-50 hover:text-primary focus:bg-purple-50 aria-[current=page]:bg-purple-50 aria-[current=page]:text-primary"
+                      className="ml-4 flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-purple-50 hover:text-primary focus:bg-purple-50 aria-[current=page]:bg-purple-50 aria-[current=page]:text-primary"
                     >
                       <div className="flex items-center self-center text-2xl text-primary">
                         {route.icon}
@@ -93,30 +99,30 @@ export default function SideMenu() {
             </ul>
           </div>
 
-          <div className="w-full h-4 absolute bottom-8">
+          {/* Botón de salir */}
+          <div className="p-4">
             <button
-                      onClick={handleSignOut}
-                      className="w-full flex items-center gap-3 rounded p-3 pl-7 text-slate-700 transition-colors hover:bg-primary hover:text-white focus:bg-purple-50 aria-[current=page]:bg-purple-50 aria-[current=page]:text-primary"
-                    >
-                      <div className="flex items-center self-center text-2xl">
-                        {<IoExit/>}
-                      </div>
-                      <span className="text-base font-medium">
-                        {'Salir'}
-                      </span>
-                    </button>
+              onClick={handleSignOut}
+              className="w-full flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-primary hover:text-white focus:bg-purple-50"
+            >
+              <div className="flex items-center self-center text-2xl">
+                <IoExit/>
+              </div>
+              <span className="text-base font-medium">
+                Salir
+              </span>
+            </button>
           </div>
         </nav>
       </aside>
 
-      {/*  <!-- Backdrop --> */}
+      {/* Backdrop para móvil */}
       <div
-        className={`fixed top-0 bottom-0 left-0 right-0 z-30 bg-slate-900/20 transition-colors lg:hidden ${
+        className={`fixed top-0 bottom-0 left-0 right-0 z-30 bg-slate-900/50 transition-colors lg:hidden ${
           isSideNavOpen ? "block" : "hidden"
         }`}
         onClick={() => setIsSideNavOpen(false)}
       ></div>
-      {/*  <!-- End Basic side navigation menu --> */}
     </>
   );
 }

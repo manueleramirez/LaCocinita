@@ -128,10 +128,6 @@ measurementUnits.units[9].conversions = [
 measurementUnits.units[10].conversions = [
   { code: "l", factor: 0.473176 }, // pints to liters
 ];
-measurementUnits.units[11].conversions = [
-  { code: "l", factor: 0.236588 }, // cups to liters
-  { code: "kg", factor: 10 }, // cups to kg
-];
 
 const unitsSlice = createSlice({
   name: "units",

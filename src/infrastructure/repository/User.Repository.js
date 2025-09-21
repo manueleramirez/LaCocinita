@@ -63,4 +63,20 @@ export class UserRepository {
         
         return {isSuccess: true, data: data};
     }
+
+    async signInWithGoogle() {
+        const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: `${window.location.origin}/recipes`
+            }
+        });
+        
+        if (error) {
+            console.error('Error signing in with Google:', error);
+            return {isSuccess: false, data: error};
+        }
+        
+        return {isSuccess: true, data: data};
+    }
 }

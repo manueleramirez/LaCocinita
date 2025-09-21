@@ -5,6 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
 import { userAdapter } from "../../adapters/user.adapter";
 import Logo from "../../components/Logo";
+import GoogleAuthButton from "../../components/GoogleAuthButton";
 import { UserRepository } from "../../infrastructure/repository/User.Repository";
 import { login } from "./slice";
 
@@ -52,6 +53,17 @@ useEffect(() => {
   };
   validateSession();
 },[])
+
+  // Handlers para Google Auth
+  const handleGoogleSuccess = (data) => {
+    // El usuario será redirigido automáticamente por Supabase
+    console.log('Google authentication initiated successfully');
+  };
+
+  const handleGoogleError = (error) => {
+    setErrorMessage("Error al conectar con Google. Inténtalo de nuevo.");
+    console.error('Google authentication error:', error);
+  };
 
 
   return (
@@ -143,6 +155,24 @@ useEffect(() => {
                     "Ingresar"
                   )}
                 </button>
+              </div>
+
+              {/* Divider */}
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300" />
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-white text-gray-500">O continúa con</span>
+                </div>
+              </div>
+
+              {/* Google Auth Button */}
+              <div>
+                <GoogleAuthButton 
+                  onSuccess={handleGoogleSuccess}
+                  onError={handleGoogleError}
+                />
               </div>
 
                {errorMessage && (

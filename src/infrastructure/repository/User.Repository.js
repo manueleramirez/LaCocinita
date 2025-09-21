@@ -68,7 +68,7 @@ export class UserRepository {
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
-                redirectTo: `${window.location.origin}/recipes`
+                redirectTo: `${window.location.origin}/auth/callback`
             }
         });
         

@@ -5,6 +5,7 @@ import Recipe from "./modules/Recipe/Recipe";
 import SignIn from "./modules/Security/Login";
 import ForgotPassword from "./modules/Security/ForgotPassword";
 import ResetPassword from "./modules/Security/ResetPassword";
+import AuthCallback from "./modules/Security/AuthCallback";
 import Config from "./modules/Configurations";
 
 const routesConfig = [
@@ -27,6 +28,13 @@ const routesConfig = [
       path: "/reset-password",
       label: "",
       element: <ResetPassword/>,
+      showInMenu: false,
+      isProtected: false,
+    },
+    {
+      path: "/auth/callback",
+      label: "",
+      element: <AuthCallback/>,
       showInMenu: false,
       isProtected: false,
     },

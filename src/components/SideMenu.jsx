@@ -13,11 +13,24 @@ export default function SideMenu() {
   const navigate = useNavigate()
   const [isSideNavOpen, setIsSideNavOpen] = useState(false);
   
-  const handleSignOut = () =>{
-    userService.signOut().then(()=>{    
-      dispatcher(logout())
-      navigate('/')
-    })
+  const handleSignOut = async () => {
+    try {
+      const result = await userService.signOut();
+      if (result.isSuccess) {
+        dispatcher(logout());
+        navigate('/');
+      } else {
+        console.error('Error during signout:', result.data);
+        // Aún así, limpiar el estado local y redirigir
+        dispatcher(logout());
+        navigate('/');
+      }
+    } catch (error) {
+      console.error('Unexpected error during signout:', error);
+      // Aún así, limpiar el estado local y redirigir
+      dispatcher(logout());
+      navigate('/');
+    }
   }
   
   return (

@@ -25,12 +25,17 @@ export class UserRepository {
     }
 
     async signOut() {
-        const { error } = await supabase.auth.signOut();
-        if (error) {
-          console.error('Error signing out user:', error);
-          return {isSuccess: false, data:error};
+        try {
+            const { error } = await supabase.auth.signOut();
+            if (error) {
+                console.error('Error signing out user:', error);
+                return {isSuccess: false, data: error};
+            }
+            return {isSuccess: true, data: null};
+        } catch (error) {
+            console.error('Unexpected error during signout:', error);
+            return {isSuccess: false, data: error};
         }
-        return {isSuccess:true,data:null};
     }
 
     async resetPassword(email) {

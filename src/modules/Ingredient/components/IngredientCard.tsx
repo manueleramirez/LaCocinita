@@ -27,10 +27,12 @@ export function IngredientCard({ ingredient, onEdit, onDelete }: IngredientCardP
             {isLowStock && <Badge variant="warning">Stock bajo</Badge>}
           </div>
           <p className="text-sm text-[var(--color-text-secondary)] mt-1">
-            Stock: {ingredient.quantity} {unitLabels[ingredient.unitId] ?? ingredient.unitId}
+            {ingredient.quantity} {unitLabels[ingredient.unitId] ?? ingredient.unitId} / paquete
           </p>
           <p className="text-sm text-[var(--color-text-secondary)]">
-            Precio: ${ingredient.unitPrice.toFixed(2)} / {unitLabels[ingredient.unitId] ?? ingredient.unitId}
+            Paquete: <span className="font-medium">${ingredient.packagePrice.toFixed(2)}</span>
+            {' · '}
+            Unitario: <span className="font-medium">${ingredient.unitPrice.toFixed(2)}</span> / {unitLabels[ingredient.unitId] ?? ingredient.unitId}
           </p>
           {ingredient.brand && (
             <p className="text-xs text-[var(--color-text-secondary)] mt-0.5">Marca: {ingredient.brand}</p>

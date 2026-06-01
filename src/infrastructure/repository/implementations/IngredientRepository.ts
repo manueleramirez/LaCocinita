@@ -9,6 +9,7 @@ interface RawIngredient {
   quantity: number;
   unit_id: string;
   unit_price: number;
+  package_price: number;
   distributor_id: string | null;
   brand: string | null;
   category_id: string | null;
@@ -29,6 +30,7 @@ export class IngredientRepository extends BaseRepository<Ingredient, IngredientC
       quantity: r.quantity,
       unitId: r.unit_id,
       unitPrice: r.unit_price,
+      packagePrice: r.package_price,
       distributorId: r.distributor_id ?? undefined,
       brand: r.brand ?? undefined,
       categoryId: r.category_id ?? undefined,
@@ -44,6 +46,7 @@ export class IngredientRepository extends BaseRepository<Ingredient, IngredientC
       quantity: data.quantity,
       unit_id: data.unitId,
       unit_price: data.unitPrice,
+      package_price: data.packagePrice,
       distributor_id: data.distributorId || null,
       brand: data.brand || null,
       category_id: data.categoryId || null,

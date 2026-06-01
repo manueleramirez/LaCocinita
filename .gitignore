@@ -49,3 +49,4 @@ test-results/crud-CRUD-Recetas-Crear-editar-y-eliminar-receta-chromium/error-con
 .opencode/skills/spec-generator.md
 .opencode/templates/spec-template.md
 AGENTS.md
+e2e/brownie-recipe.spec.ts

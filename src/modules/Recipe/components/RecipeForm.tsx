@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { useForm, useFieldArray, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { recipeSchema, type RecipeFormValues } from '@/modules/Recipe/validation';
 import { Input } from '@/shared/components/ui/Input';
@@ -47,7 +47,7 @@ export function RecipeForm({ onSubmit, initialValues, isEditing, onCancel }: Rec
 
   const { fields, append, remove } = useFieldArray({ control, name: 'ingredients' });
 
-  const watchedIngredients = watch('ingredients');
+  const watchedIngredients = useWatch({ control, name: 'ingredients' });
   const watchedPrepTime = watch('preparationTime');
   const watchedPortions = watch('portionsPerRecipe');
 

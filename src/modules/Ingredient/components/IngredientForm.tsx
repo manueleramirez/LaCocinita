@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ingredientSchema, type IngredientFormValues } from '@/modules/Ingredient/validation';
@@ -29,18 +30,28 @@ const unitOptions = [
 export function IngredientForm({ onSubmit, initialValues, isEditing, onCancel }: IngredientFormProps) {
   const suppliers = useAppSelector((state) => state.supplier.items);
 
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<IngredientFormValues>({
+  const { register, handleSubmit, watch, setValue, formState: { errors, isSubmitting } } = useForm<IngredientFormValues>({
     resolver: zodResolver(ingredientSchema),
     defaultValues: {
       name: initialValues?.name ?? '',
       quantity: initialValues?.quantity ?? 0,
       unitId: initialValues?.unitId ?? 'un',
       unitPrice: initialValues?.unitPrice ?? 0,
+      packagePrice: initialValues?.packagePrice ?? 0,
       distributorId: initialValues?.distributorId ?? '',
       brand: initialValues?.brand ?? '',
       minStock: initialValues?.minStock ?? undefined,
     },
   });
+
+  const quantity = watch('quantity');
+  const packagePrice = watch('packagePrice');
+
+  const calculatedUnitPrice = quantity > 0 ? packagePrice / quantity : 0;
+
+  useEffect(() => {
+    setValue('unitPrice', calculatedUnitPrice);
+  }, [calculatedUnitPrice, setValue]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -67,11 +78,11 @@ export function IngredientForm({ onSubmit, initialValues, isEditing, onCancel }:
       </div>
       <div className="grid grid-cols-2 gap-4">
         <Input
-          label="Precio por unidad"
+          label="Precio del paquete ($)"
           type="number"
           step="0.01"
-          error={errors.unitPrice?.message}
-          {...register('unitPrice', { valueAsNumber: true })}
+          error={errors.packagePrice?.message}
+          {...register('packagePrice', { valueAsNumber: true })}
         />
         <Input
           label="Stock mínimo (alerta)"
@@ -80,6 +91,9 @@ export function IngredientForm({ onSubmit, initialValues, isEditing, onCancel }:
           error={errors.minStock?.message}
           {...register('minStock', { valueAsNumber: true })}
         />
+      </div>
+      <div className="text-sm text-[var(--color-text-secondary)] text-right">
+        Precio por unidad: <span className="font-semibold text-[var(--color-text)]">${calculatedUnitPrice.toFixed(2)}</span>
       </div>
       <Input
         label="Marca"

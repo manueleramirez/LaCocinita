@@ -24,6 +24,7 @@ export interface Ingredient extends BaseEntity {
   quantity: number;
   unitId: string;
   unitPrice: number;
+  packagePrice: number;
   distributorId?: string;
   brand?: string;
   categoryId?: string;
@@ -36,6 +37,7 @@ export interface IngredientCreate {
   quantity: number;
   unitId: string;
   unitPrice: number;
+  packagePrice: number;
   distributorId?: string;
   brand?: string;
   categoryId?: string;

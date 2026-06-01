@@ -5,6 +5,7 @@ export const ingredientSchema = z.object({
   quantity: z.number().min(0, 'No puede ser negativo'),
   unitId: z.string().min(1, 'Selecciona una unidad'),
   unitPrice: z.number().min(0, 'No puede ser negativo'),
+  packagePrice: z.number().min(0, 'No puede ser negativo'),
   distributorId: z.string().optional(),
   brand: z.string().max(100).optional(),
   categoryId: z.string().optional(),

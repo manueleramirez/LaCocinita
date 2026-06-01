@@ -4,7 +4,6 @@ export interface PricingInput {
     quantity: number;
     unitId: string;
     ingredientPrice: number;
-    ingredientBaseQty: number;
   }>;
   preparationTime: number;
   portionsPerRecipe: number;
@@ -31,8 +30,7 @@ export interface PricingResult {
 
 export function calculatePricing(input: PricingInput): PricingResult {
   const ingredientBreakdown = input.ingredients.map((ing) => {
-    const unitCost = ing.ingredientPrice / ing.ingredientBaseQty;
-    const cost = unitCost * ing.quantity;
+    const cost = ing.ingredientPrice * ing.quantity;
     return { ingredientId: ing.ingredientId, cost };
   });
 

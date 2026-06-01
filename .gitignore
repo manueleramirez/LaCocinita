@@ -27,3 +27,25 @@ dist-ssr
 # Local Netlify folder
 .netlify
 netlify.toml
+
+# Environment variables
+.env
+.env.local
+e2e/app.spec.ts
+e2e/crud.spec.ts
+e2e/login.spec.ts
+test-results/.last-run.json
+test-results/crud-CRUD-Clientes-Crear-editar-y-eliminar-cliente-chromium/error-context.md
+test-results/crud-CRUD-Gastos-Crear-y-eliminar-gasto-chromium/error-context.md
+test-results/crud-CRUD-Ingredientes-Crear-editar-y-eliminar-ingrediente-chromium/error-context.md
+test-results/crud-CRUD-Menús-Crear-y-eliminar-menú-chromium/error-context.md
+test-results/crud-CRUD-Recetas-Crear-editar-y-eliminar-receta-chromium/error-context.md
+.opencode/opencode.json
+.opencode/agents/sdd-architect.md
+.opencode/skills/architecture-review.md
+.opencode/skills/clean-code-audit.md
+.opencode/skills/requirements-discovery.md
+.opencode/skills/scalability-review.md
+.opencode/skills/spec-generator.md
+.opencode/templates/spec-template.md
+AGENTS.md

@@ -1,9 +1,12 @@
+import { convertUnit } from '@/shared/utils/unitConversions';
+
 export interface PricingInput {
   ingredients: Array<{
     ingredientId: string;
     quantity: number;
     unitId: string;
     ingredientPrice: number;
+    ingredientUnitId: string;
   }>;
   preparationTime: number;
   portionsPerRecipe: number;
@@ -30,7 +33,9 @@ export interface PricingResult {
 
 export function calculatePricing(input: PricingInput): PricingResult {
   const ingredientBreakdown = input.ingredients.map((ing) => {
-    const cost = ing.ingredientPrice * ing.quantity;
+    const convertedQty = convertUnit(ing.quantity, ing.unitId, ing.ingredientUnitId);
+    const effectiveQty = convertedQty ?? ing.quantity;
+    const cost = ing.ingredientPrice * effectiveQty;
     return { ingredientId: ing.ingredientId, cost };
   });
 

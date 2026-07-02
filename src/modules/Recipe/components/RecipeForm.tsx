@@ -77,6 +77,7 @@ export function RecipeForm({ onSubmit, initialValues, isEditing, onCancel }: Rec
           quantity: ing.quantity || 0,
           unitId: ing.unitId,
           ingredientPrice: found?.unitPrice ?? 0,
+          ingredientUnitId: found?.unitId ?? '',
         };
       }),
       preparationTime: watchedPrepTime || 0,

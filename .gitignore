@@ -40,7 +40,7 @@ test-results/crud-CRUD-Gastos-Crear-y-eliminar-gasto-chromium/error-context.md
 test-results/crud-CRUD-Ingredientes-Crear-editar-y-eliminar-ingrediente-chromium/error-context.md
 test-results/crud-CRUD-Menús-Crear-y-eliminar-menú-chromium/error-context.md
 test-results/crud-CRUD-Recetas-Crear-editar-y-eliminar-receta-chromium/error-context.md
-.opencode/opencode.json
+.opencode
 .opencode/agents/sdd-architect.md
 .opencode/skills/architecture-review.md
 .opencode/skills/clean-code-audit.md
@@ -50,3 +50,4 @@ test-results/crud-CRUD-Recetas-Crear-editar-y-eliminar-receta-chromium/error-con
 .opencode/templates/spec-template.md
 AGENTS.md
 e2e/brownie-recipe.spec.ts
+.opencode/plans/unit-conversion-fix.md
